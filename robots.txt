@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://algofront.in/sitemap.xml
+
+# Disallow certain file types that are not useful for search engines
+Disallow: *.css$
+Disallow: *.js$
+
+# Allow common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
