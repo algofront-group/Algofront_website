@@ -40,6 +40,7 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <style>
     /* Beautiful scroll reveal animations - Enhanced with !important */
@@ -91,6 +92,51 @@
         opacity: 1;
       }
     }
+    
+    /* 3D Network Animation Styles */
+    #network-scene {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Remove white background from hero image */
+    .hero-image {
+      filter: 
+        brightness(0.8) 
+        contrast(1.4) 
+        saturate(1.3);
+      mix-blend-mode: multiply;
+      background: transparent !important;
+      isolation: isolate;
+    }
+    
+    .hero-image-wrapper {
+      position: relative;
+      background: transparent;
+    }
+    
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(255, 23, 68, 0.05));
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: overlay;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
@@ -133,29 +179,29 @@
 
   <!-- HERO -->
   <section class="relative overflow-hidden fade-in">
+  <!-- 3D Network Scene -->
+  <canvas id="network-scene"></canvas>
+    
     <!-- decorative blobs -->
-    <div class="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-br from-orange-300/40 to-pink-300/40 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-gradient-to-tr from-pink-300/40 to-orange-300/40 blur-3xl"></div>
+    <div class="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-br from-orange-300/20 to-pink-300/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-gradient-to-tr from-pink-300/20 to-orange-300/20 blur-3xl"></div>
 
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-6 py-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-6 py-20 hero-content">
       <div class="space-y-6 fade-in-fast">
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-          Innovate. Build. Deploy.
-          <span class="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">with AlgoFront</span>
+          Smart Contracts & Ledger Solutions
+          <span class="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">Delivered</span>
         </h1>
-        <p class="text-lg text-gray-600 max-w-xl">We craft lightweight, high‑performance websites and mobile apps with delightful UI/UX and secure, scalable engineering for businesses in Pune and worldwide.</p>
+  <p class="text-lg text-gray-600 max-w-xl">We craft secure distributed ledger solutions and high performance web applications with cutting edge smart contracts, decentralized systems, and scalable engineering for businesses in Pune and worldwide.</p>
         <div class="max-w-xl">
-          <div class="mt-4 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50 to-pink-50 p-4">
-            <p class="text-base md:text-lg leading-relaxed text-gray-500">We are a collective of six highly skilled IT specialists. Our team is distinguished by a proven track record of developing and deploying numerous real-world projects. By bridging the gap between cutting-edge academic knowledge and practical industry application, we deliver robust, efficient, and innovative technology solutions tailored to our clients' needs.</p>
+          <div class="mt-4 rounded-xl border border-orange-100 bg-gradient-to-r from-orange-50/90 to-pink-50/90 backdrop-blur p-4">
+            <p class="text-base md:text-lg leading-relaxed text-gray-500">We are a collective of six highly skilled IT specialists. Our team is distinguished by a proven track record of developing and deploying numerous real world projects. By bridging the gap between cutting edge academic knowledge and practical industry application, we deliver robust, efficient, and innovative technology solutions tailored to our clients' needs.</p>
           </div>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="#services" class="rounded-xl px-5 py-3 border border-orange-300/70 hover:border-pink-400 hover:bg-orange-50">Explore Services</a>
+          <a href="#services" class="rounded-xl px-5 py-3 border border-orange-300/70 hover:border-pink-400 hover:bg-orange-50/80 backdrop-blur">Explore Services</a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHltmSBrgm25JvydDeznTRMx35LLXOlArJ1Q_sSSYTy53Bhw/viewform" target="_blank" rel="noopener" class="rounded-xl px-5 py-3 text-white bg-gradient-to-r from-orange-500 to-pink-500 shadow hover:shadow-md hover:opacity-95">Book a Meeting</a>
         </div>
-      </div>
-      <div class="relative fade-in-fast">
-        <img src="assets/home_page_icon.png" alt="Developer animation" class="w-full max-w-xl mx-auto block bg-transparent" />
       </div>
     </div>
   </section>
@@ -164,44 +210,44 @@
   <section id="services" class="bg-gradient-to-b from-orange-50 via-pink-50 to-white fade-in">
     <div class="max-w-7xl mx-auto px-6 py-16">
       <h2 class="text-3xl md:text-4xl font-bold text-center fade-in-fast">Our Services</h2>
-      <p class="text-center text-gray-600 mt-2 max-w-2xl mx-auto fade-in-fast">End‑to‑end product development across Web, iOS, Android, and UI/UX built for speed, security, and scale. Serving businesses from startups to enterprises.</p>
+  <p class="text-center text-gray-600 mt-2 max-w-2xl mx-auto fade-in-fast">Cutting edge distributed ledger development and web solutions built for security, transparency, and scalability. From smart contracts to decentralized applications, we deliver innovative technology solutions for the future.</p>
 
   <!-- force four columns so all four cards appear in one row -->
   <div class="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        <!-- iOS -->
-        <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
-          <img src="assets/our_services_1.webp" alt="iOS app development" class="w-full h-40 object-cover">
+  <!-- Sub Ledger Project 1 -->
+  <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
+          <img src="assets/our_services_1.png" alt="Smart Contract Development" class="w-full h-40 object-cover">
           <div class="p-6 space-y-3">
             <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
-            <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">iOS App Development</h3>
-            <p class="text-gray-700 text-sm leading-relaxed">Swift/SwiftUI apps engineered for performance and accessibility. From MVPs to App Store launches, we integrate analytics, payments, and push notifications with rock‑solid QA.</p>
+    <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Smart Contract Development</h3>
+      <p class="text-gray-700 text-sm leading-relaxed">We design, develop, and audit secure smart contracts for a variety of distributed ledger platforms, ensuring reliability and transparency for your decentralized applications.</p>
           </div>
         </article>
-        <!-- Android -->
+  <!-- Sub Ledger Project 2 -->
         <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
-          <img src="assets/our_services_2.avif" alt="Android development" class="w-full h-40 object-cover">
+          <img src="assets/our_services_2.jpg" alt="Decentralized App (dApp) Solutions" class="w-full h-40 object-cover">
           <div class="p-6 space-y-3">
             <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
-            <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Android App Development</h3>
-            <p class="text-gray-700 text-sm leading-relaxed">Kotlin/Jetpack apps that shine on the Play Store. We build offline‑first, battery‑friendly apps with robust security and analytics.</p>
+    <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Decentralized App (dApp) Solutions</h3>
+      <p class="text-gray-700 text-sm leading-relaxed">Custom dApp development for finance, supply chain, and more. We build scalable, user-friendly decentralized applications tailored to your business needs.</p>
           </div>
         </article>
-        <!-- Web Dev -->
+  <!-- Sub Ledger Project 3 -->
+        <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
+          <img src="assets/our_services_4.png" alt="Tokenization & NFT Platforms" class="w-full h-40 object-cover">
+          <div class="p-6 space-y-3">
+            <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
+    <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Tokenization & NFT Platforms</h3>
+      <p class="text-gray-700 text-sm leading-relaxed">Launch your own tokens or NFT marketplace. We provide end-to-end solutions for token creation, management, and secure trading platforms.</p>
+          </div>
+        </article>
+        <!-- Web Dev (moved to last position) -->
         <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
           <img src="assets/our_services_3.jpeg" alt="Web development" class="w-full h-40 object-cover">
           <div class="p-6 space-y-3">
             <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
             <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Web Development</h3>
             <p class="text-gray-700 text-sm leading-relaxed">From landing pages to complex dashboards: fast, responsive, and SEO‑ready. We prioritize Core Web Vitals and accessibility.</p>
-          </div>
-        </article>
-        <!-- UI/UX -->
-        <article class="group bg-white/95 rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden border border-transparent fade-in hover-lift">
-          <img src="assets/our_services_4.avif" alt="UI/UX design" class="w-full h-40 object-cover">
-          <div class="p-6 space-y-3">
-            <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
-            <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">UI/UX Design</h3>
-            <p class="text-gray-700 text-sm leading-relaxed">Human‑centered product design that converts. Wireframes to polished design systems with thoughtful micro‑interactions.</p>
           </div>
         </article>
       </div>
@@ -222,7 +268,7 @@
           <div class="p-6 space-y-3">
             <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
             <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Expert Team of 6 Specialists</h3>
-            <p class="text-gray-700 text-sm leading-relaxed">Hand-picked team of highly skilled IT professionals with proven track records. Each specialist brings deep expertise in their domain, ensuring world class solutions for every project.</p>
+            <p class="text-gray-700 text-sm leading-relaxed">Hand picked team of highly skilled IT professionals with proven track records. Each specialist brings deep expertise in their domain, ensuring world class solutions for every project.</p>
             <p class="text-gray-500 text-xs">Experienced · Specialized · Proven</p>
           </div>
         </article>
@@ -232,7 +278,7 @@
             <div class="p-6 space-y-3">
               <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
               <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Academic + Industry Excellence</h3>
-              <p class="text-gray-700 text-sm leading-relaxed">We bridge cutting-edge academic knowledge with practical industry application. Our approach combines theoretical foundations with real-world experience to deliver innovative, robust solutions.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">We bridge cutting edge academic knowledge with practical industry application. Our approach combines theoretical foundations with real world experience to deliver innovative, robust solutions.</p>
               <p class="text-gray-500 text-xs">Research-Driven · Practical · Innovation</p>
             </div>
           </article>
@@ -242,7 +288,7 @@
             <div class="p-6 space-y-3">
               <div class="h-1 w-12 rounded-full bg-gradient-to-r from-orange-400 to-pink-400"></div>
               <h3 class="text-xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Proven Track Record</h3>
-              <p class="text-gray-700 text-sm leading-relaxed">Multiple successful real-world projects deployed and running in production. Our portfolio demonstrates consistent delivery of high-quality, scalable solutions across various industries.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Multiple successful real-world projects deployed and running in production. Our portfolio demonstrates consistent delivery of high quality, scalable solutions across various industries.</p>
               <p class="text-gray-500 text-xs">Deployed · Production-Ready · Reliable</p>
             </div>
           </article>
@@ -369,6 +415,174 @@
           observer.observe(el);
         });
       }, 500);
+    });
+  </script>
+  
+  <!-- Beautiful 3D Network Animation -->
+  <script>
+    // 3D Network Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('network-scene');
+      if (!canvas) return;
+      
+      // Scene setup
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, (window.innerWidth / 2) / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ 
+        canvas: canvas,
+        alpha: true,
+        antialias: true 
+      });
+      
+      renderer.setSize(window.innerWidth / 2, window.innerHeight);
+      renderer.setClearColor(0x000000, 0); // Transparent background
+      
+  // Create network cubes
+      const cubes = [];
+      const cubeCount = 15;
+      
+      // Materials for different cube types
+      const materials = [
+        new THREE.MeshBasicMaterial({ 
+          color: 0xFF6B35, 
+          transparent: true, 
+          opacity: 0.7,
+          wireframe: false
+        }),
+        new THREE.MeshBasicMaterial({ 
+          color: 0xFF1744, 
+          transparent: true, 
+          opacity: 0.6,
+          wireframe: false
+        }),
+        new THREE.MeshBasicMaterial({ 
+          color: 0xFF9800, 
+          transparent: true, 
+          opacity: 0.5,
+          wireframe: false
+        })
+      ];
+      
+      // Create cubes in a network formation
+      for (let i = 0; i < cubeCount; i++) {
+        const geometry = new THREE.BoxGeometry(
+          0.5 + Math.random() * 0.5, 
+          0.5 + Math.random() * 0.5, 
+          0.5 + Math.random() * 0.5
+        );
+        
+        const material = materials[Math.floor(Math.random() * materials.length)];
+        const cube = new THREE.Mesh(geometry, material.clone());
+        
+        // Position cubes in 3D space
+        cube.position.x = (Math.random() - 0.5) * 20;
+        cube.position.y = (Math.random() - 0.5) * 15;
+        cube.position.z = (Math.random() - 0.5) * 10;
+        
+        // Random rotation
+        cube.rotation.x = Math.random() * Math.PI;
+        cube.rotation.y = Math.random() * Math.PI;
+        cube.rotation.z = Math.random() * Math.PI;
+        
+        // Store animation properties
+        cube.userData = {
+          rotationSpeed: {
+            x: (Math.random() - 0.5) * 0.02,
+            y: (Math.random() - 0.5) * 0.02,
+            z: (Math.random() - 0.5) * 0.02
+          },
+          floatSpeed: Math.random() * 0.01 + 0.005,
+          floatAmplitude: Math.random() * 2 + 1,
+          originalY: cube.position.y
+        };
+        
+        cubes.push(cube);
+        scene.add(cube);
+      }
+      
+      // Create connection lines between nearby cubes
+      const lines = [];
+      for (let i = 0; i < cubes.length; i++) {
+        for (let j = i + 1; j < cubes.length; j++) {
+          const distance = cubes[i].position.distanceTo(cubes[j].position);
+          if (distance < 8) {
+            const geometry = new THREE.BufferGeometry().setFromPoints([
+              cubes[i].position,
+              cubes[j].position
+            ]);
+            const material = new THREE.LineBasicMaterial({ 
+              color: 0xFF6B35, 
+              transparent: true, 
+              opacity: 0.2 
+            });
+            const line = new THREE.Line(geometry, material);
+            lines.push(line);
+            scene.add(line);
+          }
+        }
+      }
+      
+      // Camera position
+      camera.position.z = 15;
+      camera.position.y = 2;
+      camera.position.x = 3;
+      
+      // Animation loop
+      let time = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+        
+        // Animate cubes
+        cubes.forEach((cube, index) => {
+          // Rotation
+          cube.rotation.x += cube.userData.rotationSpeed.x;
+          cube.rotation.y += cube.userData.rotationSpeed.y;
+          cube.rotation.z += cube.userData.rotationSpeed.z;
+          
+          // Floating motion
+          cube.position.y = cube.userData.originalY + 
+            Math.sin(time * cube.userData.floatSpeed + index) * cube.userData.floatAmplitude;
+          
+          // Gentle opacity pulsing
+          cube.material.opacity = 0.4 + Math.sin(time * 2 + index) * 0.3;
+        });
+        
+        // Gentle camera movement
+        camera.position.x = 3 + Math.sin(time * 0.5) * 2;
+        camera.position.y = 2 + Math.cos(time * 0.3) * 1;
+        camera.lookAt(0, 0, 0);
+        
+        renderer.render(scene, camera);
+      }
+      
+      animate();
+      
+      // Handle window resize
+      function handleResize() {
+        camera.aspect = (window.innerWidth / 2) / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth / 2, window.innerHeight);
+      }
+      
+      window.addEventListener('resize', handleResize);
+      
+      // Cleanup function
+  window.networkSceneCleanup = function() {
+        window.removeEventListener('resize', handleResize);
+        // Clean up Three.js resources
+        cubes.forEach(cube => {
+          scene.remove(cube);
+          cube.geometry.dispose();
+          cube.material.dispose();
+        });
+        lines.forEach(line => {
+          scene.remove(line);
+          line.geometry.dispose();
+          line.material.dispose();
+        });
+        renderer.dispose();
+      };
     });
   </script>
   
