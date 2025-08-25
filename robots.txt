@@ -17,3 +17,13 @@ Allow: /
 
 User-agent: Slurp
 Allow: /
+
+# Additional crawlers
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# Crawl-delay for better server performance
+Crawl-delay: 1

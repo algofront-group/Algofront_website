@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AlgoFront - Leading Smart Contract & Distributed Ledger Development Company | Pune</title>
-  <meta name="description" content="AlgoFront - Expert team specializing in smart contracts, distributed ledger solutions, and high-performance web development. Based in Pune, serving clients worldwide with cutting-edge technology solutions." />
-  <meta name="keywords" content="AlgoFront, algofront, algo front, smart contracts, distributed ledger, blockchain development, web development, dApp development, Pune IT company, decentralized applications, tokenization, NFT platforms" />
+  <title>AlgoFront - Leading Smart Contract & Distributed Ledger Development Company | Pune | algofront.in</title>
+  <meta name="description" content="AlgoFront (algofront.in) - Expert team specializing in smart contracts, distributed ledger solutions, and high-performance web development. Based in Pune, serving clients worldwide with cutting-edge technology solutions." />
+  <meta name="keywords" content="AlgoFront, algofront, algofront.in, algo front, smart contracts, distributed ledger, blockchain development, web development, dApp development, Pune IT company, decentralized applications, tokenization, NFT platforms" />
   <meta name="author" content="AlgoFront" />
   <meta name="robots" content="index, follow" />
   <meta name="brand" content="AlgoFront" />
@@ -14,16 +14,16 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://algofront.in/" />
-  <meta property="og:title" content="AlgoFront - Leading Smart Contract & Distributed Ledger Development Company" />
-  <meta property="og:description" content="AlgoFront specializes in smart contracts, distributed ledger solutions, and high-performance web development. Expert team based in Pune serving clients worldwide." />
+  <meta property="og:title" content="AlgoFront - Leading Smart Contract & Distributed Ledger Development Company | algofront.in" />
+  <meta property="og:description" content="AlgoFront (algofront.in) specializes in smart contracts, distributed ledger solutions, and high-performance web development. Expert team based in Pune serving clients worldwide." />
   <meta property="og:image" content="https://algofront.in/assets/logo.png" />
   <meta property="og:site_name" content="AlgoFront" />
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://algofront.in/" />
-  <meta name="twitter:title" content="AlgoFront - Leading Smart Contract & Distributed Ledger Development Company" />
-  <meta name="twitter:description" content="AlgoFront specializes in smart contracts, distributed ledger solutions, and high-performance web development." />
+  <meta name="twitter:title" content="AlgoFront - Leading Smart Contract & Distributed Ledger Development Company | algofront.in" />
+  <meta name="twitter:description" content="AlgoFront (algofront.in) specializes in smart contracts, distributed ledger solutions, and high-performance web development." />
   <meta property="twitter:image" content="https://algofront.in/assets/logo.png" />
   
   <!-- Canonical URL -->
@@ -32,9 +32,21 @@
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" href="sitemap.xml" />
   
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/site.webmanifest" />
+  
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  
+  <!-- Additional logo meta tags for search engines -->
+  <meta property="og:logo" content="https://algofront.in/assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo.png" />
   
   <!-- Performance and Security -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -52,7 +64,13 @@
     "name": "AlgoFront",
     "alternateName": ["Algo Front", "algofront"],
     "url": "https://algofront.in",
-    "logo": "https://algofront.in/assets/logo.png",
+    "logo": {
+      "@type": "ImageObject", 
+      "url": "https://algofront.in/assets/logo.png",
+      "width": 500,
+      "height": 500
+    },
+    "image": "https://algofront.in/assets/logo.png",
     "description": "AlgoFront is a leading technology company specializing in smart contracts, distributed ledger solutions, and high-performance web development.",
     "foundingLocation": {
       "@type": "Place",
@@ -79,7 +97,12 @@
     },
     "sameAs": [
       "https://algofront.in"
-    ]
+    ],
+    "brand": {
+      "@type": "Brand",
+      "name": "AlgoFront",
+      "logo": "https://algofront.in/assets/logo.png"
+    }
   }
   </script>
   
@@ -192,6 +215,7 @@
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 font-medium text-gray-800">
         <a href="index.html" class="text-gray-800 hover:text-orange-600">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-orange-600">About</a>
         <a href="#services" class="text-gray-800 hover:text-orange-600">Services</a>
         <a href="projects.html" class="text-gray-800 hover:text-orange-600">Our Projects</a>
         <a href="carrer.html" class="text-gray-800 hover:text-orange-600">Carrers</a>
@@ -210,6 +234,7 @@
     <div id="mobile-nav" class="md:hidden hidden border-t bg-gradient-to-b from-orange-50 to-pink-50 backdrop-blur">
       <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
         <a href="index.html" class="block py-2 text-gray-800">Home</a>
+        <a href="about.html" class="block py-2 text-gray-800">About</a>
         <a href="#services" class="block py-2 text-gray-800">Services</a>
         <a href="projects.html" class="block py-2 text-gray-800">Our Projects</a>
         <a href="carrer.html" class="block py-2 text-gray-800">Carrers</a>
